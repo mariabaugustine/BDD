@@ -43,7 +43,7 @@ namespace LinkeInTests.StepDefinitions
             fluentWait.IgnoreExceptionTypes(typeof(NoSuchElementException));
             fluentWait.Message = "Element not found";
             IWebElement passwordInput = fluentWait.Until(dri => dri.FindElement(By.Id("session_password")));
-            passwordInput.SendKeys("12345678");
+            passwordInput.SendKeys("1234");
         }
 
         [When(@"User will click on login button")]
@@ -60,7 +60,7 @@ namespace LinkeInTests.StepDefinitions
         [Then(@"User will be redirected to home page")]
         public void ThenUserWillBeRedirectedToHomePage()
         {
-            Assert.That(driver.Url.Contains("Log In"));
+            Assert.That(driver.Title.Contains("Log In"));
         }
     }
 }
