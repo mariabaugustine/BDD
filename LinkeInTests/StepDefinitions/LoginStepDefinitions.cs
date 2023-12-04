@@ -24,11 +24,11 @@ namespace LinkeInTests.StepDefinitions
         {
             driver.Url = "https://linkedin.com";
         }
-        [BeforeScenario]
-        public static void LoadURL()
-        {
-            driver.Url = "https://www.linkedin.com";
-        }
+        //[BeforeScenario]
+        //public static void LoadURL()
+        //{
+        //    driver.Url = "https://www.linkedin.com";
+        //}
 
         [AfterFeature]
         public static void CleanUp()
@@ -36,7 +36,7 @@ namespace LinkeInTests.StepDefinitions
             driver?.Quit();
         }
 
-        [When(@"User will enter '(.*)' ")]
+        [When(@"User will enter username '(.*)'")]
         public void WhenUserWillEnterUsername(string un)
         {
             DefaultWait<IWebDriver?> fluentWait = new DefaultWait<IWebDriver?>(driver);
@@ -49,7 +49,7 @@ namespace LinkeInTests.StepDefinitions
             emailInput.SendKeys(un);
         }
 
-        [When(@"User will enter '(.*)'")]
+        [When(@"User will enter password '(.*)'")]
         public void WhenUserWillEnterPassword(string pwd)
         {
             DefaultWait<IWebDriver?> fluentWait = new DefaultWait<IWebDriver?>(driver);
