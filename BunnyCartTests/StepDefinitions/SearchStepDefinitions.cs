@@ -66,7 +66,7 @@ namespace BunnyCartTests.StepDefinitions
             IWebElement searchinput = driver.FindElement(By.Id("search"));
             searchinput.SendKeys(searchtext);
             searchinput.SendKeys(Keys.Enter);
-            Log.Information("Typed search text" + searchtext);
+            Log.Information("Typed search text" + searchinput);
         }
 
         //[When(@"User clicks on search button")]
