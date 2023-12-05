@@ -1,4 +1,5 @@
-﻿using NUnit.Framework.Internal;
+﻿using BunnyCartTests.Hooks;
+using NUnit.Framework.Internal;
 using OpenQA.Selenium;
 using Serilog;
 using System;
@@ -12,7 +13,7 @@ namespace BunnyCartTests.Utilities
 {
      public  class CoreCodes
      {
-       public  IWebDriver driver;
+        public static  IWebDriver driver=BeforeHooks.driver;
         public void TakeScreenShot(IWebDriver driver)
         {
             ITakesScreenshot screenshot = (ITakesScreenshot)driver;

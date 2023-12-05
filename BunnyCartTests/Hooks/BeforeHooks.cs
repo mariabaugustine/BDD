@@ -1,34 +1,39 @@
-﻿using TechTalk.SpecFlow;
+﻿using OpenQA.Selenium;
+using Serilog;
+using TechTalk.SpecFlow;
 
 namespace BunnyCartTests.Hooks
 {
     [Binding]
     public sealed class BeforeHooks
     {
-        // For additional details on SpecFlow hooks see http://go.specflow.org/doc-hooks
-
-        [BeforeScenario("@tag1")]
-        public void BeforeScenarioWithTag()
+        public static IWebDriver? driver;
+        [BeforeFeature]
+        public static void InitializeBrowser()
         {
-            // Example of filtering hooks using tags. (in this case, this 'before scenario' hook will execute if the feature/scenario contains the tag '@tag1')
-            // See https://docs.specflow.org/projects/specflow/en/latest/Bindings/Hooks.html?highlight=hooks#tag-scoping
-
-            //TODO: implement logic that has to run before executing each scenario
+            driver = new OpenQA.Selenium.Chrome.ChromeDriver();
+        }
+        [AfterFeature]
+        public static void CleanUp()
+        {
+            driver.Quit();
         }
 
-        [BeforeScenario(Order = 1)]
-        public void FirstBeforeScenario()
+        [BeforeFeature]
+        public static void LogFileCreation()
         {
-            // Example of ordering the execution of hooks
-            // See https://docs.specflow.org/projects/specflow/en/latest/Bindings/Hooks.html?highlight=order#hook-execution-order
+            string currentDirectory = Directory.GetParent(@"../../../").FullName;
+            string logfilepath = currentDirectory + "/Logs/log_" + DateTime.Now.ToString("yyyy-MM-dd_HHmmss") + ".txt";
 
-            //TODO: implement logic that has to run before executing each scenario
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.Console()
+                .WriteTo.File(logfilepath, rollingInterval: RollingInterval.Day).CreateLogger();
+
         }
-
         [AfterScenario]
-        public void AfterScenario()
+        public static void NavigateToHomePage()
         {
-            //TODO: implement logic that has to run after executing each scenario
+            driver.Navigate().GoToUrl("https://www.bunnycart.com/");
         }
     }
 }

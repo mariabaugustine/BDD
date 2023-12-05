@@ -1,3 +1,4 @@
+using BunnyCartTests.Hooks;
 using BunnyCartTests.Utilities;
 using NUnit.Framework;
 using NUnit.Framework.Internal.Execution;
@@ -14,44 +15,8 @@ namespace BunnyCartTests.StepDefinitions
     [Binding]
     public class SearchStepDefinitions : CoreCodes
     {
-        public static IWebDriver? driver;
-        [BeforeFeature]
-        public static void InitializeBrowser()
-        {
-            driver = new OpenQA.Selenium.Chrome.ChromeDriver();
-        }
 
-
-
-
-        [AfterFeature]
-        public static void CleanUp()
-        {
-            driver.Quit();
-        }
-
-        [BeforeFeature]
-        public static void LogFileCreation()
-        {
-            string currentDirectory = Directory.GetParent(@"../../../").FullName;
-            string logfilepath = currentDirectory + "/Logs/log_" + DateTime.Now.ToString("yyyy-MM-dd_HHmmss") + ".txt";
-
-            Log.Logger = new LoggerConfiguration()
-                .WriteTo.Console()
-                .WriteTo.File(logfilepath, rollingInterval: RollingInterval.Day).CreateLogger();
-
-        }
-
-
-
-
-
-        [AfterScenario]
-        public static void NavigateToHomePage()
-        {
-            driver.Navigate().GoToUrl("https://www.bunnycart.com/");
-        }
-
+        IWebDriver? driver = BeforeHooks.driver;
 
 
         [Given(@"User will be on the homepage")]
