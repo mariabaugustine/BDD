@@ -74,10 +74,10 @@ namespace BunnyCartTests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Search")]
+        [NUnit.Framework.DescriptionAttribute("01 Search")]
         [NUnit.Framework.CategoryAttribute("E2E-Search_AddToCart")]
         [NUnit.Framework.TestCaseAttribute("water", null)]
-        public virtual void Search(string searchtext, string[] exampleTags)
+        public virtual void _01Search(string searchtext, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "E2E-Search_AddToCart"};
@@ -88,7 +88,7 @@ namespace BunnyCartTests.Features
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("searchtext", searchtext);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Search", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("01 Search", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -118,15 +118,21 @@ this.ScenarioInitialize(scenarioInfo);
 #line 9
  testRunner.Then(string.Format("Search results are loaded in the same page with \'{0}\'", searchtext), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 10
+ testRunner.Then(string.Format("The heading should have \'{0}\'", searchtext), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 11
+ testRunner.And(string.Format("Title should have \'{0}\'", searchtext), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Check-For-Title_After-Search")]
+        [NUnit.Framework.DescriptionAttribute("02 Select a particular product")]
         [NUnit.Framework.CategoryAttribute("E2E-Search_AddToCart")]
-        [NUnit.Framework.TestCaseAttribute("water", null)]
-        public virtual void Check_For_Title_After_Search(string searchtext, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("1", null)]
+        public virtual void _02SelectAParticularProduct(string productnumber, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "E2E-Search_AddToCart"};
@@ -136,9 +142,9 @@ this.ScenarioInitialize(scenarioInfo);
             }
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("searchtext", searchtext);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check-For-Title_After-Search", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 15
+            argumentsOfScenario.Add("productnumber", productnumber);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("02 Select a particular product", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 17
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -158,11 +164,14 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 16
- testRunner.Then(string.Format("The heading should have \'{0}\'", searchtext), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 18
+ testRunner.Given("Search page is loaded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 17
- testRunner.And(string.Format("Title should have \'{0}\'", searchtext), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
+#line 19
+ testRunner.When(string.Format("User selects a \'{0}\'", productnumber), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 20
+ testRunner.Then("Product page is loaded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
