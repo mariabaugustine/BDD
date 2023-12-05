@@ -10,3 +10,13 @@ Scenario: Search
 Examples: 
     | searchtext |
     | water      |
+
+@E2E-Search_AddToCart
+Scenario Outline: Check-For-Title_After-Search
+	Then The heading should have '<searchtext>'
+	* Title should have '<searchtext>'
+
+Examples: 
+    | searchtext |
+    | water      |
+ 
